@@ -59,12 +59,12 @@ export default function Orphanage() {
           <div className="images">
            { orphanage?.images.map(((img , index)=> {
              return (
-              <button onClick={() => {
+              <button  key={String(img)} onClick={() => {
                 setActiveImageIndex(index)
               }} 
               className={activeImageIndex === index ? "active" : ''}
                 type="button">
-                <img src={img.url} alt={orphanage.name} />
+                <img src={img.url} alt={orphanage.name} key={String(img)} />
               </button>
              )
            })) }
@@ -76,7 +76,7 @@ export default function Orphanage() {
 
             <div className="map-container">
               <Map 
-                center={[-27.2092052,-49.6401092]} 
+                center={[-2.531089,-44.2384228]} 
                 zoom={16} 
                 style={{ width: '100%', height: 280 }}
                 dragging={false}
@@ -86,9 +86,9 @@ export default function Orphanage() {
                 doubleClickZoom={false}
               >
                 <TileLayer 
-                  url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+                  url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker interactive={false} icon={mapIcon} position={[-27.2092052,-49.6401092]} />
+                <Marker interactive={false} icon={mapIcon} position={[-2.531089,-44.2384228]} />
               </Map>
 
               <footer>
@@ -114,7 +114,7 @@ export default function Orphanage() {
                 fim de semana
                 </div>)
               : 
-              (<div className="open-on-weekends">
+              (<div className="open-on-weekends dont-open">
               <FiInfo size={32} color="#FF669D" />
               Não atendemos <br />
               fim de semana
